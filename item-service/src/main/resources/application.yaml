@@ -1,0 +1,5 @@
+server:
+  port: 8090
+hm:
+  swagger:
+    package: com.heima.item.controller

@@ -1,0 +1,6 @@
+hm:
+  db:
+    host: mysql # docker配置
+    port: 3306
+    database: hm-item
+    pw: 123

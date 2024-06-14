@@ -1,0 +1,62 @@
+19:46:05:980  INFO 95219 --- [main] com.hmall.HMallApplication               : Starting HMallApplication using Java 11.0.21 on yyzdebijibendiannao.local with PID 95219 (/Users/yyz/IdeaProjects/hmall/hm-service/target/classes started by yyz in /Users/yyz/IdeaProjects/hmall)
+19:46:05:985 DEBUG 95219 --- [main] com.hmall.HMallApplication               : Running with Spring Boot v2.7.12, Spring v5.3.27
+19:46:05:992  INFO 95219 --- [main] com.hmall.HMallApplication               : The following 1 profile is active: "dev"
+19:46:06:881  INFO 95219 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+19:46:06:883  INFO 95219 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+19:46:06:899  INFO 95219 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+19:46:07:270  INFO 95219 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+19:46:07:274  INFO 95219 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+19:46:07:274  INFO 95219 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.75]
+19:46:07:335  INFO 95219 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+19:46:07:335  INFO 95219 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1289 ms
+19:46:08:228  INFO 95219 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2ControllerWebMvc#getDocumentation(String, HttpServletRequest)]
+19:46:08:563  WARN 95219 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use
+19:46:08:583  INFO 95219 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+19:46:08:594  INFO 95219 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+19:46:08:606 ERROR 95219 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+23:13:55:576  INFO 8033 --- [main] com.hmall.HMallApplication               : Starting HMallApplication using Java 11.0.21 on yyzdebijibendiannao.local with PID 8033 (/Users/yyz/IdeaProjects/hmall/hm-service/target/classes started by yyz in /Users/yyz/IdeaProjects/hmall)
+23:13:55:579 DEBUG 8033 --- [main] com.hmall.HMallApplication               : Running with Spring Boot v2.7.12, Spring v5.3.27
+23:13:55:579  INFO 8033 --- [main] com.hmall.HMallApplication               : The following 1 profile is active: "dev"
+23:13:56:075  INFO 8033 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+23:13:56:077  INFO 8033 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+23:13:56:099  INFO 8033 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11 ms. Found 0 Redis repository interfaces.
+23:13:56:461  INFO 8033 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+23:13:56:466  INFO 8033 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+23:13:56:466  INFO 8033 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.75]
+23:13:56:539  INFO 8033 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+23:13:56:540  INFO 8033 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 932 ms
+23:13:57:522  INFO 8033 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2ControllerWebMvc#getDocumentation(String, HttpServletRequest)]
+23:13:57:788  WARN 8033 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use
+23:13:57:803  INFO 8033 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+23:13:57:812  INFO 8033 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+23:13:57:823 ERROR 8033 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+

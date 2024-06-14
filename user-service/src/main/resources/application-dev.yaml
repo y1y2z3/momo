@@ -1,0 +1,6 @@
+hm:
+  db:
+    host: mysql
+    port: 3306
+    database: hm-user
+    pw: 123

@@ -1,0 +1,6 @@
+hm:
+  db:
+    host: localhost
+    port: 3306
+    database: hm-cart
+    pw: yyz20010528

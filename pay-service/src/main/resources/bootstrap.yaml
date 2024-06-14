@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: pay-service
+  profiles:
+    active: prod
+  cloud:
+    nacos:
+      server-addr: ${localhost.ip}:8848
+      discovery:
+        ip: ${localhost.ip}
+      config:
+        file-extension: yaml
+        shared-configs:
+          - data-id: shared-jdbc.yaml
+          - data-id: shared-log.yaml
+          - data-id: shared-swagger.yaml
+          - data-id: shared-feign.yaml
+          - data-id: shared-sentinel.yaml
+          - data-id: shared-seata.yaml
+localhost:
+  ip: 172.20.10.8

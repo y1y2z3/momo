@@ -1,0 +1,10 @@
+server:
+  port: 8093
+hm:
+  jwt:
+    location: classpath:hmall.jks
+    alias: hmall
+    password: hmall123
+    tokenTTL: 30m
+  swagger:
+    package: com.heima.user.controller

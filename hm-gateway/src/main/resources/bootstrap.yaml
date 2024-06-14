@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      server-addr: ${localhost.ip}:8848
+      discovery:
+        ip: ${localhost.ip}
+      config:
+        file-extension: yaml
+        shared-configs:
+          - data-id: shared-log.yaml
+localhost:
+  ip: 172.20.10.8

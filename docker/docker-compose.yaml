@@ -1,0 +1,216 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql
+    container_name: mysql
+    ports:
+      - "3307:3306"
+    environment:
+      - TZ=Asia/Shanghai
+      - MYSQL_ROOT_PASSWORD=123
+    volumes:
+      - "./mysql/conf:/etc/mysql/conf.d"
+      - "./mysql/data:/var/lib/mysql"
+      - "./mysql/init:/docker-entrypoint-initdb.d"
+    networks:
+      - hm-net
+  es:
+    image: elasticsearch:7.12.1
+    container_name: es
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    privileged: true
+    volumes:
+      - "./elasticsearch/data:/usr/share/elasticsearch/data"
+      - "./elasticsearch/plugins:/usr/share/elasticsearch/plugins"
+    networks:
+      - hm-net
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.12.1
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_HOSTS=http://es:9200
+    networks:
+      - hm-net
+    depends_on:
+      - es
+  nginx:
+    image: nginx
+    container_name: nginx
+    ports:
+      - "18080:18080"
+      - "18081:18081"
+    volumes:
+      - "./nginx/nginx.conf:/etc/nginx/nginx.conf"
+      - "./nginx/html:/usr/share/nginx/html"
+    depends_on:
+      - hm-gateway
+      - item-service
+      - cart-service
+      - pay-service
+      - trade-service
+      - user-service
+    networks:
+      - hm-net
+  nacos:
+    image: nacos/nacos-server:v2.1.0-slim
+    container_name: nacos
+    restart: always
+    env_file:
+      - ./nacos/custom.env
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+      - "9849:9849"
+    depends_on:
+      - mysql
+    networks:
+      - hm-net
+  seata:
+    image: seataio/seata-server:1.5.2
+    container_name: seata
+    privileged: true
+    ports:
+      - "8099:8099"
+      - "7099:7099"
+    environment:
+      - SEATA_IP=172.20.10.8
+#      - ES_JAVA_OPTS=-Xms128m -Xmx128m
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 512M
+    volumes:
+      - "./seata/resources:/seata-server/resources"
+    networks:
+      - hm-net
+    depends_on:
+      - nacos
+  item-service:
+    image: item-service
+    build:
+      context: ./item-service
+      dockerfile: dockerfile
+    container_name: item-service
+    ports:
+      - "8090:8090"
+    volumes:
+      - "./item-service/logs:/logs/item-service"
+    networks:
+      - hm-net
+    depends_on:
+      - nacos
+      - mysql
+  cart-service:
+    image: cart-service
+    build:
+      context: ./cart-service
+      dockerfile: dockerfile
+    container_name: cart-service
+    ports:
+      - "8091:8091"
+    volumes:
+      - "./cart-service/logs:/logs/cart-service"
+#    environment:
+#      - ES_JAVA_OPTS=-Xms128m -Xmx128m
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 512M
+    networks:
+      - hm-net
+    depends_on:
+      - nacos
+      - mysql
+  trade-service:
+    image: trade-service
+    build:
+      context: ./trade-service
+      dockerfile: dockerfile
+    container_name: trade-service
+    ports:
+      - "8092:8092"
+    volumes:
+      - "./trade-service/logs:/logs/trade-service"
+#    environment:
+#      - ES_JAVA_OPTS=-Xms128m -Xmx128m
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 512M
+    networks:
+      - hm-net
+    depends_on:
+      - nacos
+      - mysql
+  user-service:
+    image: user-service
+    build:
+      context: ./user-service
+      dockerfile: dockerfile
+    container_name: user-service
+    ports:
+      - "8093:8093"
+    volumes:
+      - "./user-service/logs:/logs/user-service"
+#    environment:
+#      - ES_JAVA_OPTS=-Xms128m -Xmx128m
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 512M
+    networks:
+      - hm-net
+    depends_on:
+      - nacos
+      - mysql
+  pay-service:
+    image: pay-service
+    build:
+      context: ./pay-service
+      dockerfile: dockerfile
+    container_name: pay-service
+    ports:
+      - "8094:8094"
+    volumes:
+      - "./pay-service/logs:/logs/pay-service"
+#    environment:
+#      - ES_JAVA_OPTS=-Xms128m -Xmx128m
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 512M
+    networks:
+      - hm-net
+    depends_on:
+      - nacos
+      - mysql
+  hm-gateway:
+    image: hm-gateway
+    build:
+      context: ./hm-gateway
+      dockerfile: dockerfile
+    container_name: hm-gateway
+    ports:
+      - "8095:8095"
+#    environment:
+#      - ES_JAVA_OPTS=-Xms128m -Xmx128m
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 512M
+    networks:
+      - hm-net
+    depends_on:
+      - nacos
+networks:
+  hm-net:
+    name: hmall
+    external: true
